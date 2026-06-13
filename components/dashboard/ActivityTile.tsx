@@ -19,12 +19,7 @@ export default function ActivityTile() {
         {Array.from({ length: 35 }).map((_, i) => (
           <div
             key={i}
-            className="
-              h-4
-              w-4
-              rounded-sm
-              bg-blue-500/70
-            "
+            className="h-4 w-4 rounded-sm bg-blue-500/70"
           />
         ))}
       </div>
