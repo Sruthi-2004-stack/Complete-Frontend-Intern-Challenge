@@ -1,22 +1,7 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 120,
-      damping: 20,
-    },
-  },
-};
+import { motion } from "framer-motion";
+import { itemVariants } from "../ui/AnimatedContainer";
 
 export default function ActivityTile() {
   return (
@@ -24,8 +9,7 @@ export default function ActivityTile() {
       variants={itemVariants}
       className="
         rounded-3xl
-        border
-        border-zinc-800
+        border border-zinc-800
         bg-zinc-900
         p-6
         md:col-span-2
@@ -39,16 +23,12 @@ export default function ActivityTile() {
         {Array.from({ length: 35 }).map((_, i) => (
           <div
             key={i}
-            className={`
+            className="
               h-4
               w-4
               rounded-sm
-              ${
-                Math.random() > 0.5
-                  ? "bg-blue-500/70"
-                  : "bg-zinc-800"
-              }
-            `}
+              bg-blue-500/70
+            "
           />
         ))}
       </div>
