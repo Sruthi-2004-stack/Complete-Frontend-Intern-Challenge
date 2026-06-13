@@ -1,28 +1,46 @@
 "use client";
 
-export default function ActivityTile() {
-  return (
-    <article
-      className="
-        rounded-3xl
-        border border-zinc-800
-        bg-zinc-900
-        p-6
-        md:col-span-2
-      "
-    >
-      <h2 className="text-xl font-semibold">
-        Learning Activity
-      </h2>
+import { useEffect, useState } from "react";
 
-      <div className="mt-6 grid grid-cols-7 gap-2">
-        {Array.from({ length: 35 }).map((_, i) => (
-          <div
-            key={i}
-            className="h-4 w-4 rounded-sm bg-blue-500/70"
-          />
-        ))}
+type ActivityTileProps = {
+  totalSessions?: number;
+};
+
+export default function ActivityTile({ totalSessions }: ActivityTileProps) {
+  const [safeSessions, setSafeSessions] = useState<number>(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    // If value comes from props → use it
+    if (typeof totalSessions === "number") {
+      setSafeSessions(totalSessions);
+      return;
+    }
+
+    // fallback (client-only storage safe access)
+    const stored = localStorage.getItem("totalSessions");
+    setSafeSessions(stored ? Number(stored) : 0);
+  }, [totalSessions]);
+
+  // Prevent hydration mismatch (VERY IMPORTANT)
+  if (!mounted) {
+    return (
+      <div className="p-4 rounded-xl bg-white/5 animate-pulse">
+        <p className="text-2xl font-bold text-white">0</p>
+        <p className="text-xs text-white/40 mt-0.5">Sessions</p>
       </div>
-    </article>
+    );
+  }
+
+  return (
+    <div
+      className="p-4 rounded-xl"
+      style={{ background: "rgba(255,255,255,0.03)" }}
+    >
+      <p className="text-2xl font-bold text-white">{safeSessions}</p>
+      <p className="text-xs text-white/40 mt-0.5">Sessions</p>
+    </div>
   );
 }
