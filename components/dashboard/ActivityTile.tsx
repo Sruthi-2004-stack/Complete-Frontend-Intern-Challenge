@@ -1,12 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { itemVariants } from "../ui/AnimatedContainer";
-
 export default function ActivityTile() {
   return (
-    <motion.article
-      variants={itemVariants}
+    <article
       className="
         rounded-3xl
         border border-zinc-800
@@ -32,6 +28,6 @@ export default function ActivityTile() {
           />
         ))}
       </div>
-    </motion.article>
+    </article>
   );
 }
