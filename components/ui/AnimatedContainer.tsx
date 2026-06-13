@@ -1,43 +1,37 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
+import { itemVariants } from "../ui/AnimatedContainer";
 
-export const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-export const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
-
-export default function AnimatedContainer({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ActivityTile() {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
+    <motion.article
+      variants={itemVariants}
+      className="
+        rounded-3xl
+        border border-zinc-800
+        bg-zinc-900
+        p-6
+        md:col-span-2
+      "
     >
-      {children}
-    </motion.div>
+      <h2 className="text-xl font-semibold">
+        Learning Activity
+      </h2>
+
+      <div className="mt-6 grid grid-cols-7 gap-2">
+        {Array.from({ length: 35 }).map((_, i) => (
+          <div
+            key={i}
+            className="
+              h-4
+              w-4
+              rounded-sm
+              bg-blue-500/70
+            "
+          />
+        ))}
+      </div>
+    </motion.article>
   );
 }
