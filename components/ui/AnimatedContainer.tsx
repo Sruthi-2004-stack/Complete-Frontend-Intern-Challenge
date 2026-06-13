@@ -1,22 +1,18 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { ReactNode } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
-interface Props {
-  children: ReactNode;
-}
-
-export const containerVariants: Variants = {
+export const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
-export const itemVariants: Variants = {
+export const itemVariants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -25,8 +21,8 @@ export const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 300,
+      type: "spring" as const,
+      stiffness: 120,
       damping: 20,
     },
   },
@@ -34,7 +30,9 @@ export const itemVariants: Variants = {
 
 export default function AnimatedContainer({
   children,
-}: Props) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <motion.div
       variants={containerVariants}
