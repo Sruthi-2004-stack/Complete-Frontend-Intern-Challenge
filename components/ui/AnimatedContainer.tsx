@@ -21,9 +21,7 @@ export const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring" as const,
-      stiffness: 120,
-      damping: 20,
+      duration: 0.4,
     },
   },
 };
