@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
-export const containerVariants: Variants = {
+export const containerVariants = {
   hidden: {},
   show: {
     transition: {
@@ -11,7 +11,7 @@ export const containerVariants: Variants = {
   },
 };
 
-export const itemVariants: Variants = {
+export const itemVariants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -20,7 +20,7 @@ export const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 120,
     },
   },
