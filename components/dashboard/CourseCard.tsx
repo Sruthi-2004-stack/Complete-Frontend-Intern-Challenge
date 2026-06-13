@@ -14,11 +14,12 @@ export default function CourseCard({
   course,
 }: Props) {
 
-  const Icon =
-    Icons[
-      course.icon_name as keyof typeof Icons
-    ] || Icons.BookOpen;
+  import { LucideIcon } from "lucide-react";
 
+const Icon: LucideIcon =
+  (Icons[
+    course.icon_name as keyof typeof Icons
+  ] as LucideIcon) || Icons.BookOpen;
   return (
     <motion.article
       whileHover={{
